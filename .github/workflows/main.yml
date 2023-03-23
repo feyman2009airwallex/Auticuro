@@ -27,12 +27,6 @@ jobs:
           echo "Show current Dir"
           pwd
       -
-        name: Show customized directory
-        working-directory: ./dockerfiles
-        run: |
-          echo "Show customized Dir"
-          pwd
-      -
         name: Build Rust
         run: |
 #          cargo build --release
