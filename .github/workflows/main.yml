@@ -8,9 +8,16 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    container:
-      image: feyman2019/auticuro-compile-image:1.6.0_nightly
     steps:
+      - name: Install Rust And Setup Env
+        run: |
+          export DEBIAN_FRONTEND=noninteractive && apt-get update -y && apt-get upgrade -y && apt-get install -y build-essential curl cmake
+          curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- --profile=default -y
+          source $HOME/.cargo/env
+          rustup toolchain install nightly-2022-01-13
+          rustup default nightly-2022-01-13
+          rustup component add rustfmt
+          cargo build --release
       -
         name: Checkout
         uses: actions/checkout@v3
