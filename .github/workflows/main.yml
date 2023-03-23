@@ -27,15 +27,22 @@ jobs:
           echo "Show current Dir"
           pwd
       -
+        name: Show customized directory
+        working-directory: ./dockerfiles
+        run: |
+          echo "Show customized Dir"
+          pwd
+      -
         name: Build Rust
         run: |
-          cargo build --release
-          mv target/release/firm-wallet-service dockerfiles/firm-wallet-service/
-          mv target/release/firm-wallet-gateway dockerfiles/firm-wallet-gateway/
+#          cargo build --release
+#          mv target/release/firm-wallet-service dockerfiles/firm-wallet-service/
+#          mv target/release/firm-wallet-gateway dockerfiles/firm-wallet-gateway/
           cp firm-wallet-gateway/.env dockerfiles/firm-wallet-gateway/.env
       -
         name: Build and push
         uses: docker/build-push-action@v4
+        working-directory: ./dockerfiles/firm-wallet-service
         with:
           context: .
           file: ./dockerfiles/firm-wallet-service/Dockerfile
