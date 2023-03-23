@@ -28,4 +28,4 @@ jobs:
           context: .
           file: ./dockerfiles/firm-wallet-service/Dockerfile
           push: true
-          tags: feyman2019/Auticuro:latest
+          tags: feyman2019/auticuro:latest
