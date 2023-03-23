@@ -29,9 +29,6 @@ jobs:
       -
         name: Build Rust
         run: |
-#          cargo build --release
-#          mv target/release/firm-wallet-service dockerfiles/firm-wallet-service/
-#          mv target/release/firm-wallet-gateway dockerfiles/firm-wallet-gateway/
           cp firm-wallet-gateway/.env dockerfiles/firm-wallet-gateway/.env
       -
         name: Build and push
