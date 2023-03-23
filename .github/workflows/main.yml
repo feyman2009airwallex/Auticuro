@@ -22,6 +22,18 @@ jobs:
         name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v2
       -
+        name: Show current directory
+        run: |
+          echo "Show current Dir"
+          pwd
+      -
+        name: Build Rust
+        run: |
+          cargo build --release
+          mv target/release/firm-wallet-service dockerfiles/firm-wallet-service/
+          mv target/release/firm-wallet-gateway dockerfiles/firm-wallet-gateway/
+          cp firm-wallet-gateway/.env dockerfiles/firm-wallet-gateway/.env
+      -
         name: Build and push
         uses: docker/build-push-action@v4
         with:
