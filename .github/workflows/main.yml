@@ -35,8 +35,8 @@ jobs:
           rustup default nightly-2022-01-13
           rustup component add rustfmt
           cargo build --release
-          mv target/release/firm-wallet-service dockerfiles/firm-wallet-service/
-          mv target/release/firm-wallet-gateway dockerfiles/firm-wallet-gateway/
+          cp target/release/firm-wallet-service dockerfiles/firm-wallet-service/
+          cp target/release/firm-wallet-gateway dockerfiles/firm-wallet-gateway/
           cp firm-wallet-gateway/.env dockerfiles/firm-wallet-gateway/.env
       -
         name: Login to Docker Hub
