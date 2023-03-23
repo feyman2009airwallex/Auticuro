@@ -1,4 +1,4 @@
-FROM asia.gcr.io/airwallex/fp-infra-run-image:20.04
+FROM feyman2019/fp-infra-run-image:20.04
 
 ADD ./firm-wallet-gateway /gateway/firm-wallet-gateway
 ADD ./entrypoint.sh /gateway/entrypoint.sh
