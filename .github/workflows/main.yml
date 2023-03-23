@@ -7,7 +7,7 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: feyman2019/auticuro-compile-image:1.6.0_nightly
     steps:
       -
         name: Checkout
@@ -33,9 +33,8 @@ jobs:
       -
         name: Build and push
         uses: docker/build-push-action@v4
-        working-directory: ./dockerfiles/firm-wallet-service
         with:
-          context: .
+          context: ./dockerfiles/firm-wallet-service
           file: ./dockerfiles/firm-wallet-service/Dockerfile
           push: true
           tags: feyman2019/auticuro:latest
