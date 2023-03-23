@@ -10,15 +10,27 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       -
-        name: Checkout
-        uses: actions/checkout@v3
-      -
         name: Install Rust And Setup Env
         run: |
           export DEBIAN_FRONTEND=noninteractive && apt-get update -y && apt-get upgrade -y && apt-get install -y build-essential curl cmake
           curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- --profile=default -y
           source $HOME/.cargo/env
           rustup toolchain install nightly-2022-01-13
+      -
+        name: Checkout
+        uses: actions/checkout@v3
+      -
+        name: Cache
+        uses: actions/cache@v2
+        with:
+          path: |
+            ~/.cargo/registry
+            ~/.cargo/git
+            target
+          key: ${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}
+      -
+        name: Build Rust
+        run: |
           rustup default nightly-2022-01-13
           rustup component add rustfmt
           cargo build --release
@@ -41,7 +53,7 @@ jobs:
           pwd
       -
         name: Build and push
-        uses: docker/build-push-action@v4
+        uses: docker/build-push-action@v2
         with:
           context: ./dockerfiles/firm-wallet-service
           file: ./Dockerfile
