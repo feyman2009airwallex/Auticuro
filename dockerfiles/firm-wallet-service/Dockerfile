@@ -1,4 +1,4 @@
-FROM feyman2019/fp-infra-run-image:20.04
+FROM feyman2019/auticuro-run-image:20.04
 
 ADD ./firm-wallet-service /wallet/firm-wallet-service
 ADD ./entrypoint.sh /wallet/entrypoint.sh
