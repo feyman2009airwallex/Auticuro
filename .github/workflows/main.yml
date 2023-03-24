@@ -8,6 +8,9 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        platform: [linux/arm64/v8, linux/amd64, darwin/arm64]
     steps:
       -
         name: Install Rust And Setup Env
@@ -57,6 +60,7 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           context: ./dockerfiles/firm-wallet-service
+          platforms: ${{ matrix.platform }}
           file: ./dockerfiles/firm-wallet-service/Dockerfile
           push: true
           tags: feyman2019/auticuro:latest
