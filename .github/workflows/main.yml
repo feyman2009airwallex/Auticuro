@@ -13,12 +13,17 @@ jobs:
         platform: [linux/arm64/v8, linux/amd64, darwin/arm64]
     steps:
       -
-        name: Install Rust And Setup Env
-        run: |
-          export DEBIAN_FRONTEND=noninteractive && apt-get update -y && apt-get upgrade -y && apt-get install -y build-essential curl cmake
-          curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- --profile=default -y
-          source $HOME/.cargo/env
-          rustup toolchain install nightly-2022-01-13
+        name: Install Rust
+        uses: actions-rs/toolchain@v1
+        with:
+          toolchain: nightly-2022-01-13
+#      -
+#        name: Install Rust And Setup Env
+#        run: |
+#          export DEBIAN_FRONTEND=noninteractive && apt-get update -y && apt-get upgrade -y && apt-get install -y build-essential curl cmake
+#          curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- --profile=default -y
+#          source $HOME/.cargo/env
+#          rustup toolchain install nightly-2022-01-13
       -
         name: Checkout
         uses: actions/checkout@v3
