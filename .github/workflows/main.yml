@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        platform: [linux/arm64/v8, linux/amd64, darwin/arm64]
+        platform: [linux/arm64/v8, darwin/arm64]
     steps:
       -
         name: Install Rust
@@ -35,8 +35,8 @@ jobs:
             ~/.cargo/registry
             ~/.cargo/git
             target
-          key: ${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}
-          restore-keys: ${{ runner.os }}-cargo-
+          key: ${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}-${{ matrix.platform }}
+          restore-keys: ${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}-${{ matrix.platform }}
       -
         name: Build Rust
         run: |
@@ -68,4 +68,4 @@ jobs:
           platforms: ${{ matrix.platform }}
           file: ./dockerfiles/firm-wallet-service/Dockerfile
           push: true
-          tags: feyman2019/auticuro:latest
+          tags: feyman2019/auticuro:${{ matrix.platform }}
