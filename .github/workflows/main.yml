@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        platform: [linux/arm64/v8, darwin/arm64]
+        platform: [darwin/arm64]
     steps:
       -
         name: Install Rust
@@ -68,4 +68,4 @@ jobs:
           platforms: ${{ matrix.platform }}
           file: ./dockerfiles/firm-wallet-service/Dockerfile
           push: true
-          tags: feyman2019/auticuro:${{ matrix.platform }}
+          tags: feyman2019/auticuro:latest
