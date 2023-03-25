@@ -7,4 +7,4 @@
 #      - cluster_id=1
 #      - store_id=1
 #      - peer_id=1
-#    image: "feyman2019/auticuro:latest"
+#    image: "feyman2019/auticuro_1"

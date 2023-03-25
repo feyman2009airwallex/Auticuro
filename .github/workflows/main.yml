@@ -17,13 +17,10 @@ jobs:
         uses: actions-rs/toolchain@v1
         with:
           toolchain: nightly-2022-01-13
-#      -
-#        name: Install Rust And Setup Env
-#        run: |
-#          export DEBIAN_FRONTEND=noninteractive && apt-get update -y && apt-get upgrade -y && apt-get install -y build-essential curl cmake
-#          curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- --profile=default -y
-#          source $HOME/.cargo/env
-#          rustup toolchain install nightly-2022-01-13
+      -
+        name: Install tools
+        run: |
+          export DEBIAN_FRONTEND=noninteractive && apt-get update -y && apt-get upgrade -y && apt-get install -y build-essential curl cmake
       -
         name: Checkout
         uses: actions/checkout@v3
@@ -68,4 +65,4 @@ jobs:
           platforms: ${{ matrix.platform }}
           file: ./dockerfiles/firm-wallet-service/Dockerfile
           push: true
-          tags: feyman2019/auticuro_1:latest
+          tags: feyman2019/auticuro_2:latest
